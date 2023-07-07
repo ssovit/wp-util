@@ -179,8 +179,8 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
                                 echo "<h2>" . esc_html__($section['label']) . "</h2>";
                             }
 
-                            if (!empty($section['callback']) && \is_callable($section['callback'])) {
-                                $section['callback']();
+                            if (!empty($section['render_callback']) && \is_callable($section['render_callback'])) {
+                                $section['render_callback']();
                             } else {
 
                                 echo '<table class="form-table">';
@@ -387,36 +387,29 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
          */
         private function register_setting_field($field_id, $field, $section_id, $setting_key = false, $value = array())
         {
-            $controls_class_name = '\Sovit\Utilities\Controls';
             if (false === $setting_key) {
                 $setting_key = $this->setting_key;
             }
-            $args                = $field['field_args'];
-            $args['name']        = $setting_key . '[' . $field_id . ']';
-            $args['std']         = isset($args['std']) ? $args['std'] : "";
-            $args['value']       = isset($value[$field_id]) ? $value[$field_id] : $args['std'];
-            $args['id']          = sanitize_title($field['tab'] . " " . $field["section"] . " " . $field_id);
-            $field['field_args'] = $args;
+            $default=isset($args['default']) ? $args['default'] : "";
+            $args                = array_merge($field,[
+                "name"=>$setting_key . '[' . $field_id . ']',
+                "default"=>$default,
+                "value"=>isset($value[$field_id]) ? $value[$field_id] : $default,
+                "id"=>sanitize_title($field['tab'] . " " . $field["section"] . " " . $field_id),
+            ]);
 
-            $field_classes = array();
-
-            if (!empty($field['class'])) {
-                $field_classes[] = $field['field_args']['class'];
-            }
-
-            $field['field_args']['class'] = implode(' ', $field_classes);
-            $render_callback              = array($controls_class_name, 'render');
+            $render_callback              = array("\Sovit\Utilities\Controls", 'render');
             if (!empty($field['render_callback'])) {
                 $render_callback = $field['render_callback'];
             }
 
             add_settings_field(
-                $field['field_args']['id'],
-                isset($field['label']) ? $field['label'] : '',
+                $args['id'],
+                isset($args['label']) ? $args['label'] : '',
                 $render_callback,
                 $this->page_id,
                 $section_id,
-                $field['field_args']
+                $args
             );
             if (isset($field["sanitize_callback"])) {
                 $this->sanitize_callbacks[$field_id] = $field["sanitize_callback"];
