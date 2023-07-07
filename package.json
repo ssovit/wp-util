@@ -1,5 +1,5 @@
 {
-  "name": "sovit-wp-utils",
+  "name": "sovit-wp-util",
   "version": "1.0.0",
 	"description": "Utilities for WordPress",
   "main": "index.js",
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ssovit/wp-utils.git"
+    "url": "git+https://github.com/ssovit/wp-util.git"
   },
   "author": "ssovit",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ssovit/wp-utils/issues"
+    "url": "https://github.com/ssovit/wp-util/issues"
   },
-  "homepage": "https://github.com/ssovit/wp-utils#readme"
+  "homepage": "https://github.com/ssovit/wp-util#readme"
 }

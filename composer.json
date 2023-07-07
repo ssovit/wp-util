@@ -2,19 +2,19 @@
 	"name": "ssovit/wp-util",
 	"description": "Utilities for WordPress",
 	"license": "MIT",
-	"homepage": "https://github.com/ssovit/wp-utils",
+	"homepage": "https://github.com/ssovit/wp-util",
 	"authors": [
 
 		{
 			"name": "Sovit Tamrakar",
 			"email": "sovit.tamrakar@gmail.com",
-			"homepage": "https://github.com/ssovit/wp-utils",
+			"homepage": "https://github.com/ssovit/wp-util",
 			"role": "Developer"
         }
     ],
 	"support": {
-		"source": "https://github.com/ssovit/wp-utils",
-		"issues": "https://github.com/ssovit/wp-utils/issues",
+		"source": "https://github.com/ssovit/wp-util",
+		"issues": "https://github.com/ssovit/wp-util/issues",
 		"email": "sovit.tamrakar@gmail.com"
 	},
 	"autoload": {
