@@ -1,7 +1,7 @@
 <?php
 namespace Sovit\Utilities;
 
-if (!class_exists('\Sovit\Utilities\Helper')) {
+if (!class_exists(__NAMESPACE__."\Helper")) {
     class Helper
     {
         public static function add_notice($message = "", $class = "success", $btn = false, $attributes = [])

@@ -1,7 +1,7 @@
 <?php
 
 namespace Sovit\Utilities;
-if (!class_exists('\Sovit\Utilities\Routes')) {
+if (!class_exists(__NAMESPACE__."\Routes")) {
     class Routes {
         /**
          * @var array
@@ -18,10 +18,10 @@ if (!class_exists('\Sovit\Utilities\Routes')) {
          */
         public function __construct($restNamespace) {
             $this->restNamespace = $restNamespace;
-            add_action('rest_api_init', [$this, '_restInit']);
+            add_action('rest_api_init', [$this, "restInit"]);
         }
 
-        public function _restInit() {
+        protected function restInit() {
             foreach ($this->routes as $route) {
                 register_rest_route($this->restNamespace, $route->getRestEndpoint(), [
                     'methods'  => $route->getRestMethod(),

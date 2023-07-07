@@ -1,13 +1,13 @@
 <?php
 
 namespace Sovit\Utilities;
-if (!class_exists("\Sovit\Utilities\Setting")) {
+if (!class_exists(__NAMESPACE__."\Setting")) {
 
     class Setting {
         /**
          * @var string
          */
-        private $key = 'wppress';
+        private $key = "wppress";
 
         /**
          * @param $key

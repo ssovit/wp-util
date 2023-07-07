@@ -2,7 +2,7 @@
 
 namespace Sovit\Utilities;
 
-if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
+if (!class_exists(__NAMESPACE__."\Admin_Setting")) {
     class Admin_Setting {
         /**
          * @var mixed

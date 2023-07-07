@@ -1,7 +1,7 @@
 <?php
 
 namespace Sovit\Utilities;
-if (!class_exists('\Sovit\Utilities\IRoute')) {
+if (!class_exists(__NAMESPACE__."\IRoute")) {
 
     interface IRoute {
         /**

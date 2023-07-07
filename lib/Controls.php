@@ -5,7 +5,7 @@ namespace Sovit\Utilities;
 if (!\defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
-if (!class_exists("\Sovit\Utilities\Controls")) {
+if (!class_exists(__NAMESPACE__."\Controls")) {
 
     class Controls
     {
