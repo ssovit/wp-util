@@ -18,6 +18,11 @@
 /phpunit.xml      export-ignore
 /phpunit.xml.dist export-ignore
 
+
+/package.json
+/assets
+/README.md
+
 # Configure diff output for .php and .phar files.
 *.php diff=php
 *.phar -diff

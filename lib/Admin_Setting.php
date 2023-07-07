@@ -3,8 +3,7 @@
 namespace Sovit\Utilities;
 
 if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
-    class Admin_Setting
-    {
+    class Admin_Setting {
         /**
          * @var mixed
          */
@@ -14,10 +13,12 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
          * @var string
          */
         private $capability = "manage_options";
+
         /**
          * @var string
          */
         private $menu_icon = "";
+
         /**
          * @var mixed
          */
@@ -58,7 +59,6 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
          */
         private $settings = array();
 
-
         /**
          * @var array
          */
@@ -71,8 +71,7 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
          * @param false $menu_title
          * @return mixed
          */
-        public function __construct($page_id = null, $setting_key = null, $page_title = null, $menu_title = null)
-        {
+        public function __construct($page_id = null, $setting_key = null, $page_title = null, $menu_title = null) {
             if (empty($page_id)) {
                 $this->set_page_id($page_id);
             }
@@ -94,8 +93,7 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
         /**
          * @param $hook
          */
-        public function admin_enqueue_scripts($hook)
-        {
+        public function admin_enqueue_scripts($hook) {
             if ($hook == $this->page) {
                 wp_register_script('pickr', $this->get_url('assets/pickr.min.js'), array('jquery'), null, true);
                 wp_enqueue_script($this->page_id . '-setting-js', $this->get_url('assets/settings.min.js'), array('jquery', 'pickr'), null, true);
@@ -104,8 +102,7 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
             }
         }
 
-        public function admin_menu()
-        {
+        public function admin_menu() {
             if (empty($this->menu_parent)) {
                 $this->page = add_menu_page(
                     $this->page_title,
@@ -129,8 +126,7 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
             }
         }
 
-        public function display_settings_page()
-        {
+        public function display_settings_page() {
             echo "<style>.settings-wrap .tab-wrapper {display: none;}.settings-wrap .tab-wrapper.tab-active {display: block;}</style>";
             echo '<div class="wrap settings-wrap ' . $this->page_id . '-wrap">';
             echo '<h1>' . $this->page_title . '</h1>';
@@ -203,16 +199,14 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
         /**
          * @return mixed
          */
-        public function get_page()
-        {
+        public function get_page() {
             return $this->page;
         }
 
         /**
          * @param $file
          */
-        public function get_url($file = "")
-        {
+        public function get_url($file = "") {
             return trailingslashit(plugin_dir_url(__FILE__)) . $file;
         }
 
@@ -222,8 +216,7 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
          * @param $opt
          * @return mixed
          */
-        public function on_options_update($new, $old, $opt)
-        {
+        public function on_options_update($new, $old, $opt) {
             $new_val = array();
             foreach ($new as $key => $val) {
                 if (isset($this->sanitize_callbacks[$key]) and \is_callable($this->sanitize_callbacks[$key])) {
@@ -235,9 +228,8 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
             return $new_val;
         }
 
-        public function register_settings_fields()
-        {
-           $this->build_settings();
+        public function register_settings_fields() {
+            $this->build_settings();
 
             foreach ($this->settings as $tab_id => $tab) {
                 if (!isset($tab['sections'])) {
@@ -267,8 +259,7 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
          * @param $capability
          * @return mixed
          */
-        public function set_capability($capability)
-        {
+        public function set_capability($capability) {
             $this->capability = $capability;
             return $this;
         }
@@ -277,8 +268,7 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
          * @param $icon
          * @return mixed
          */
-        public function set_icon($icon)
-        {
+        public function set_icon($icon) {
             $this->menu_icon = $icon;
             return $this;
         }
@@ -287,8 +277,7 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
          * @param $parent
          * @return mixed
          */
-        public function set_menu_parent($parent)
-        {
+        public function set_menu_parent($parent) {
             $this->menu_parent = $parent;
             return $this;
         }
@@ -297,8 +286,7 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
          * @param $position
          * @return mixed
          */
-        public function set_menu_position($position)
-        {
+        public function set_menu_position($position) {
             $this->menu_position = $position;
             return $this;
         }
@@ -307,8 +295,7 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
          * @param $title
          * @return mixed
          */
-        public function set_menu_title($title)
-        {
+        public function set_menu_title($title) {
             $this->menu_title = $title;
             return $this;
         }
@@ -317,8 +304,7 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
          * @param $page_id
          * @return mixed
          */
-        public function set_page_id($page_id)
-        {
+        public function set_page_id($page_id) {
             $this->page_id = $page_id;
             return $this;
         }
@@ -327,8 +313,7 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
          * @param $title
          * @return mixed
          */
-        public function set_page_title($title)
-        {
+        public function set_page_title($title) {
             $this->page_title = $title;
             return $this;
         }
@@ -337,8 +322,7 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
          * @param $key
          * @return mixed
          */
-        public function set_setting_key($key)
-        {
+        public function set_setting_key($key) {
             $this->setting_key = $key;
             return $this;
         }
@@ -346,8 +330,7 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
         /**
          * @return mixed
          */
-        private function build_settings()
-        {
+        private function build_settings() {
             $tabs = apply_filters('sovit/settings/' . $this->page_id . '/tabs', array(
                 "general" => array(
                     "label" => esc_html__('General'),
@@ -385,20 +368,19 @@ if (!class_exists("\Sovit\Utilities\Admin_Setting")) {
          * @param $setting_key
          * @param array $value
          */
-        private function register_setting_field($field_id, $field, $section_id, $setting_key = false, $value = array())
-        {
+        private function register_setting_field($field_id, $field, $section_id, $setting_key = false, $value = array()) {
             if (false === $setting_key) {
                 $setting_key = $this->setting_key;
             }
-            $default=isset($args['default']) ? $args['default'] : "";
-            $args                = array_merge($field,[
-                "name"=>$setting_key . '[' . $field_id . ']',
-                "default"=>$default,
-                "value"=>isset($value[$field_id]) ? $value[$field_id] : $default,
-                "id"=>sanitize_title($field['tab'] . " " . $field["section"] . " " . $field_id),
-            ]);
+            $default = isset($args['default']) ? $args['default'] : "";
+            $args    = array_merge($field, array(
+                "name"    => $setting_key . '[' . $field_id . ']',
+                "default" => $default,
+                "value"   => isset($value[$field_id]) ? $value[$field_id] : $default,
+                "id"      => sanitize_title($field['tab'] . " " . $field["section"] . " " . $field_id),
+            ));
 
-            $render_callback              = array("\Sovit\Utilities\Controls", 'render');
+            $render_callback = array("\Sovit\Utilities\Controls", 'render');
             if (!empty($field['render_callback'])) {
                 $render_callback = $field['render_callback'];
             }
