@@ -21,5 +21,6 @@
 			"Sovit\\Utilities\\": "lib"
 		}
 	},
-	"type": "library"
+	"type": "library",
+	"keywords":["wordpress","plugin","theme","utilities","admin"]
 }
