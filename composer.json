@@ -24,6 +24,7 @@
 	"type": "library",
 	"keywords":["wordpress","plugin","theme","utilities","admin"],
 	"require": {
-		"ssovit/helper": "^1.0"
+		"ssovit/helper": "^1.0",
+		"ssovit/wp-rest": "^1.0"
 	}
 }
