@@ -22,5 +22,8 @@
 		}
 	},
 	"type": "library",
-	"keywords":["wordpress","plugin","theme","utilities","admin"]
+	"keywords":["wordpress","plugin","theme","utilities","admin"],
+	"require": {
+		"ssovit/helper": "^1.0"
+	}
 }
